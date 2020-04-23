@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://api.aladhan.com/v1/calendarByAddress?address=Pemalang,%20indonesia&month=04&year=2020&method=5')
+    axios.get('https://api.aladhan.com/v1/calendarByAddress?address=Pemalang,%20indonesia&month=04&year=2020&method=5')
       .then((res) => {
         console.log(res.data.data[date - 1].timings.Fajr);
         setData(res.data.data[date - 1].timings.Fajr.replace(' (WIB)', ''));
