@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Poi from './Icons/poi.png';
+import axios from 'axios';
 
 function App() {
+  // const [location, setLocation] = useState('Pemalang');
+  // const [date, setDate] = useState('');
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://muslimsalat.com/Pemalang/22-04-2020.json?key=c5c4274f7271bdb65d22646adba46b3d')
+      .then((res) => {
+        setData(res.data.items[0].fajr);
+        console.log(res.data.items[0].fajr);
+      });
+    
+  }, [])
+
   return (
   <div className="container h-screen p-4 text-center bg-gray-200 mx-auto">
 
@@ -15,23 +29,23 @@ function App() {
 
     <div className="flex flex-row items-center space-x-4 justify-between mt-20">
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
-        <p className="text-2xl text-white">17.49</p>
-        <small className="text-white">Maghrib</small>
+        <p className="text-2xl text-white">{data}</p>
+        <small className="text-white">Shubuh</small>
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">17.49</p>
-        <small className="text-white">Maghrib</small>
+        <small className="text-white">Terbit</small>
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">17.49</p>
-        <small className="text-white">Maghrib</small>
+        <small className="text-white">Dhuhur</small>
       </div>
     </div>
 
     <div className="flex flex-row items-center space-x-4 justify-between mt-4">
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">17.49</p>
-        <small className="text-white">Maghrib</small>
+        <small className="text-white">Ashar</small>
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">17.49</p>
@@ -39,7 +53,7 @@ function App() {
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">17.49</p>
-        <small className="text-white">Maghrib</small>
+        <small className="text-white">Isya</small>
       </div>
     </div>
 
