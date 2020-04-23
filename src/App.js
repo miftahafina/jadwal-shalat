@@ -69,7 +69,7 @@ function App() {
     </div>
 
     <footer className="text-xs mt-8">
-      Data diperoleh dari API <a href="https://muslimsalat.com/">MuslimSalat</a><br/>
+      Data diperoleh dari API <a href="https://prayertimes.date/api/">Prayer Times</a><br/>
       dengan penyesuaian mengikuti <a href="https://bimasislam.kemenag.go.id/jadwalshalat">Kemenag RI</a>.
     </footer>
   </div>
