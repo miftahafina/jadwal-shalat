@@ -17,6 +17,16 @@ function App() {
     
   }, [date, location])
 
+  const getDayIndo = (val) => {
+    const dayIndo = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu'];
+    return dayIndo[val.getDay()];
+  }
+
+  const getDateIndo = (val) => {
+    const monthIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    return `${val.getDate()} ${monthIndo[val.getMonth()]} ${val.getFullYear()}`;
+  }
+
   return (
   <div className="container h-screen p-4 text-center bg-gray-200 mx-auto">
 
@@ -25,8 +35,8 @@ function App() {
       <input type="text" className="bg-gray-400 mx-2 px-2 w-full text-base outline-none" name="location" id="location" value={location} />
     </div>
 
-  <div className="mt-20 text-6xl leading-none">{date.getHours()}.{date.getMinutes()}</div>
-    <div className="text-base">{date.getDate}</div>
+    <div className="mt-20 text-6xl leading-none">{getDayIndo(date)}</div>
+    <div className="text-base">{getDateIndo(date)}</div>
 
     <div className="flex flex-row items-center space-x-4 justify-between mt-20">
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
