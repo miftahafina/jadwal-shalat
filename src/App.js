@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Poi from './Icons/poi.png';
 import axios from 'axios';
+import { DebounceInput } from 'react-debounce-input';
 
 function App() {
   const [location, setLocation] = useState('Pemalang');
@@ -27,12 +28,17 @@ function App() {
     return `${val.getDate()} ${monthIndo[val.getMonth()]} ${val.getFullYear()}`;
   }
 
+  const changeLocation = (event) => {
+    console.log('location changed', event.target.value);
+    setLocation(event.target.value)
+  }
+
   return (
   <div className="container h-screen p-4 text-center bg-gray-200 mx-auto">
 
     <div className="flex flex-row items-center justify-start px-4 bg-gray-400 p-3 rounded-full">
       <img className="h-6" src={Poi} alt="POI" />
-      <input type="text" className="bg-gray-400 mx-2 px-2 w-full text-base outline-none" name="location" id="location" value={location} />
+      <DebounceInput minLength="3" debounceTimeout={300} className="bg-gray-400 mx-2 px-2 w-full text-base outline-none" name="location" id="location" value={location} onChange={changeLocation} />
     </div>
 
     <div className="mt-20 text-6xl leading-none">{getDayIndo(date)}</div>
