@@ -4,17 +4,17 @@ import axios from 'axios';
 
 function App() {
   // const [location, setLocation] = useState('Pemalang');
-  // const [date, setDate] = useState('');
+  const [date, setDate] = useState(23);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('https://muslimsalat.com/Pemalang/22-04-2020.json?key=c5c4274f7271bdb65d22646adba46b3d')
+    axios.get('http://api.aladhan.com/v1/calendarByAddress?address=Pemalang,%20indonesia&month=04&year=2020&method=5')
       .then((res) => {
-        setData(res.data.items[0].fajr);
-        console.log(res.data.items[0].fajr);
+        console.log(res.data.data[date - 1].timings.Fajr);
+        setData(res.data.data[date - 1].timings.Fajr.replace(' (WIB)', ''));
       });
     
-  }, [])
+  }, [date])
 
   return (
   <div className="container h-screen p-4 text-center bg-gray-200 mx-auto">
