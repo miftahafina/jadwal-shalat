@@ -47,7 +47,7 @@ function App() {
     <div className="flex flex-row items-center space-x-4 justify-between mt-20">
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">{prayerTimes.Fajr}</p>
-        <small className="text-white">Shubuh</small>
+        <small className="text-white">Subuh</small>
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">{prayerTimes.Sunrise}</p>
@@ -55,18 +55,18 @@ function App() {
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">{prayerTimes.Dhuhr}</p>
-        <small className="text-white">Dhuhur</small>
+        <small className="text-white">Zuhur</small>
       </div>
     </div>
 
     <div className="flex flex-row items-center space-x-4 justify-between mt-4">
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">{prayerTimes.Asr}</p>
-        <small className="text-white">Ashar</small>
+        <small className="text-white">Asar</small>
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">{prayerTimes.Maghrib}</p>
-        <small className="text-white">Maghrib</small>
+        <small className="text-white">Magrib</small>
       </div>
       <div className="flex flex-col items-center justify-center h-20 px-2 w-1/3 bg-gray-500 rounded-lg">
         <p className="text-2xl text-white">{prayerTimes.Isha}</p>
