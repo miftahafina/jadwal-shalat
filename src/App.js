@@ -8,7 +8,7 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   const [location, setLocation] = useState('Pemalang');
-  const [date, setDate] = useState(new Date());
+  const [date, changeDate] = useState(new Date());
   const [prayerTimes, setPrayerTimes] = useState([]);
 
   const [dayIndo, setDayIndo] = useState('');
@@ -18,7 +18,7 @@ function App() {
     const dateFormatted = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${date.getDate()}`
     axios.get(`https://api.pray.zone/v2/times/day.json?city=${location}&date=${dateFormatted}&school=5`)
       .then((res) => {
-        console.log(res.data.results);
+        // console.log(res.data.results);
         setPrayerTimes(res.data.results.datetime[0].times);
       });
     
@@ -35,16 +35,8 @@ function App() {
   }
 
   const nextDate = () => {
-    let currDate = date;
-    currDate.setDate(currDate.getDate() + 1);
-    console.log('currDate', currDate.getDate());
-    
-    setDate(currDate);
+    changeDate(new Date(date.setDate(date.getDate() + 1)));
   }
-
-  useEffect(() => {
-    console.log('date', date);
-  }, [date])
 
   useEffect(() => {
     getDayIndo(date);
@@ -52,7 +44,6 @@ function App() {
   }, [date]);
 
   const changeLocation = (event) => {
-    console.log('location changed', event.target.value);
     setLocation(event.target.value);
   }
 
@@ -61,7 +52,7 @@ function App() {
       <SearchBox location={location} changeLocation={(val) => changeLocation(val)}/>
 
       <div className="mt-20 text-6xl leading-none" onClick={nextDate}>{dayIndo}</div>
-      <div className="text-base">{dateIndo}</div>
+      <div className="text-base" onClick={nextDate}>{dateIndo}</div>
 
       <Table prayerTimes={prayerTimes}/>
       <Footer />
