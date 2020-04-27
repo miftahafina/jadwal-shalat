@@ -15,7 +15,7 @@ const Nav = () => {
 
         <a href="b" className="text-xs pt-2 pb-1 w-full bg-white text-center">
           <img src={CalendarIcon} alt="Calendar Icon" className="w-6 mb-1 mx-auto" />
-          Pekanan
+          Bulanan
         </a>
         
         <a href="c" className="text-xs pt-2 pb-1 w-full bg-white text-center">
