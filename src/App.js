@@ -32,7 +32,7 @@ function App() {
       setFound(false)
 
       axios.get(`https://api.pray.zone/v2/times/day.json?city=${location}&date=${dateFormatted}&school=5`)
-      .then((res) => {
+      .then(res => {
         // console.log(res.data.results);
         setPrayerTimes(res.data.results.datetime[0].times);
       })
@@ -42,13 +42,24 @@ function App() {
         setFound(true);
       })
       
-      .catch((err) => {
+      .catch(err => {
         setLoading(false);
         setFound(false)
         console.log(err);
       });
     }
   }, [dateFormatted, location]);
+
+  // 
+
+  // Bulanan
+  useEffect(() => {
+    axios.get(`https://api.pray.zone/v2/times/this_month.json?school=5&city=${location}`)
+      .then(res => {
+        console.log('bulanan', res.data.results.datetime);
+        setMonthlyPrayerTimes(res.data.results.datetime);
+      });
+  }, [location])
   
   useEffect(() => {
     setDateFormatted(`${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${date.getDate()}`);
@@ -98,7 +109,7 @@ function App() {
           found={found}
         /> */}
 
-        <Monthly />
+        <Monthly monthlyPrayerTimes={monthlyPrayerTimes}/>
 
         <Footer />
       </Container>
