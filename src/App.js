@@ -38,6 +38,12 @@ function App() {
       .then(() => {
         setLoading(false);
         setFound(true);
+      })
+      
+      .catch((err) => {
+        setLoading(false);
+        setFound(false)
+        console.log(err);
       });
     }
   }, [dateFormatted, location]);
@@ -79,11 +85,9 @@ function App() {
         <SearchBox
           location={location}
           changeLocation={(val) => changeLocation(val)}
+          loading={loading}
         />
-        <small>
-          {loading ? 'Loading...' : 'Selesai!'} <br />
-          {found ? 'Ditemukan' : 'Tidak ditemukan'}
-        </small>
+        <small>{found ? 'Ditemukan' : 'Tidak ditemukan'}</small>
         <Daily
           dateIndo={dateIndo}
           dayIndo={dayIndo}
