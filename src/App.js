@@ -4,10 +4,11 @@ import useGeolocation from 'react-hook-geolocation';
 
 import Container from './components/Container/Container';
 import SearchBox from './components/SearchBox/SearchBox';
-import BigDate from './components/BigDate/BigDate';
-import Table from './components/Table/Table';
+
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+
+import Daily from './Page/Daily/Daily';
 
 function App() {
   const [location, setLocation] = useState('Pemalang');
@@ -64,16 +65,16 @@ function App() {
   return (
     <>
       <Container>
-        <SearchBox location={location} changeLocation={(val) => changeLocation(val)} />
-        <BigDate dateIndo={dateIndo} dayIndo={dayIndo} changeDate={(val) => changeDate(val)}/>
-
-        {/* <p>
-          {
-            !geolocation.error ? geolocation.latitude : 'geolocation error'
-          }
-        </p> */}
-
-        <Table prayerTimes={prayerTimes} />
+        <SearchBox
+          location={location}
+          changeLocation={(val) => changeLocation(val)}
+        />
+        <Daily
+          dateIndo={dateIndo}
+          dayIndo={dayIndo}
+          changeDate={(val) => changeDate(val)}
+          prayerTimes={prayerTimes}
+        />
         <Footer />
       </Container>
       <Nav />
@@ -82,3 +83,9 @@ function App() {
 }
 
 export default App;
+
+/* <p>
+  {
+    !geolocation.error ? geolocation.latitude : 'geolocation error'
+  }
+</p> */
