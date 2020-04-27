@@ -10,6 +10,8 @@ import Footer from './components/Footer/Footer';
 import DiaryIcon from './Icons/diary.png';
 import CalendarIcon from './Icons/calendar.png';
 import ForestIcon from './Icons/forest.png';
+import ChevronLeftIcon from './Icons/chevron-left.png';
+import ChevronRightIcon from './Icons/chevron-right.png';
 
 function App() {
   const [location, setLocation] = useState('Pemalang');
@@ -68,11 +70,19 @@ function App() {
       <Container>
         <SearchBox location={location} changeLocation={(val) => changeLocation(val)}/>
 
-        <div className="flex flex-row items-center justify-center mt-20 bg-gray-300">
+        <div className="flex flex-row items-center justify-between my-16">
+          <button className="outline-none">
+            <img src={ChevronLeftIcon} alt="Chevron left icon" className="h-10"/>
+          </button>
+
           <div className="flex flex-col items-center justify-between">
             <div className="text-6xl leading-none" onClick={nextDate}>{dayIndo}</div>
             <div className="text-base" onClick={nextDate}>{dateIndo}</div>
           </div>
+
+          <button className="outline-none">
+            <img src={ChevronRightIcon} alt="Chevron right icon" className="h-10"/>
+          </button>
         </div>
 
         {/* <p>
