@@ -4,18 +4,14 @@ import useGeolocation from 'react-hook-geolocation';
 
 import Container from './components/Container/Container';
 import SearchBox from './components/SearchBox/SearchBox';
+import BigDate from './components/BigDate/BigDate';
 import Table from './components/Table/Table';
 import Footer from './components/Footer/Footer';
-
-import DiaryIcon from './Icons/diary.png';
-import CalendarIcon from './Icons/calendar.png';
-import ForestIcon from './Icons/forest.png';
-import ChevronLeftIcon from './Icons/chevron-left.png';
-import ChevronRightIcon from './Icons/chevron-right.png';
+import Nav from './components/Nav/Nav';
 
 function App() {
   const [location, setLocation] = useState('Pemalang');
-  const [date, changeDate] = useState(new Date());
+  const [date, settingDate] = useState(new Date());
   const [prayerTimes, setPrayerTimes] = useState([]);
 
   const [dateFormatted, setDateFormatted] = useState('');
@@ -52,8 +48,8 @@ function App() {
     setDateIndo(`${val.getDate()} ${monthIndo[val.getMonth()]} ${val.getFullYear()}`);
   }
 
-  const nextDate = () => {
-    changeDate(new Date(date.setDate(date.getDate() + 1)));
+  const changeDate = (day = 1) => {
+    settingDate(new Date(date.setDate(date.getDate() + day)));
   }
 
   useEffect(() => {
@@ -68,22 +64,8 @@ function App() {
   return (
     <>
       <Container>
-        <SearchBox location={location} changeLocation={(val) => changeLocation(val)}/>
-
-        <div className="flex flex-row items-center justify-between my-16">
-          <button className="outline-none">
-            <img src={ChevronLeftIcon} alt="Chevron left icon" className="h-10"/>
-          </button>
-
-          <div className="flex flex-col items-center justify-between">
-            <div className="text-6xl leading-none" onClick={nextDate}>{dayIndo}</div>
-            <div className="text-base" onClick={nextDate}>{dateIndo}</div>
-          </div>
-
-          <button className="outline-none">
-            <img src={ChevronRightIcon} alt="Chevron right icon" className="h-10"/>
-          </button>
-        </div>
+        <SearchBox location={location} changeLocation={(val) => changeLocation(val)} />
+        <BigDate dateIndo={dateIndo} dayIndo={dayIndo} changeDate={(val) => changeDate(val)}/>
 
         {/* <p>
           {
@@ -91,28 +73,10 @@ function App() {
           }
         </p> */}
 
-        <Table prayerTimes={prayerTimes}/>
+        <Table prayerTimes={prayerTimes} />
         <Footer />
       </Container>
-
-      <section className="block fixed inset-x-0 bottom-0 z-10 bg-gray-300 shadow">
-        <div className="flex flex-row items-center justify-around">
-          <a href="a" className="text-xs pt-2 pb-1 w-full bg-white text-center">
-            <img src={DiaryIcon} alt="Diary Icon" className="w-6 mb-1 mx-auto" />
-            Harian
-          </a>
-
-          <a href="b" className="text-xs pt-2 pb-1 w-full bg-white text-center">
-            <img src={CalendarIcon} alt="Calendar Icon" className="w-6 mb-1 mx-auto" />
-            Pekanan
-          </a>
-          
-          <a href="c" className="text-xs pt-2 pb-1 w-full bg-white text-center">
-            <img src={ForestIcon} alt="Forest Icon" className="w-6 mb-1 mx-auto" />
-            Jelajah
-          </a>
-        </div>
-      </section>
+      <Nav />
     </>
   );
 }
