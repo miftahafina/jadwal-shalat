@@ -19,15 +19,26 @@ function App() {
   const [dayIndo, setDayIndo] = useState('');
   const [dateIndo, setDateIndo] = useState('');
 
+  const [loading, setLoading] = useState(true);
+  const [found, setFound] = useState(false);
+
   const geolocation = useGeolocation();
 
   useEffect(() => {
     if (dateFormatted !== '') {
+      setLoading(true);
+      setFound(false)
+
       axios.get(`https://api.pray.zone/v2/times/day.json?city=${location}&date=${dateFormatted}&school=5`)
       .then((res) => {
         // console.log(res.data.results);
         setPrayerTimes(res.data.results.datetime[0].times);
-      });      
+      })
+      
+      .then(() => {
+        setLoading(false);
+        setFound(true);
+      });
     }
   }, [dateFormatted, location]);
   
@@ -69,6 +80,10 @@ function App() {
           location={location}
           changeLocation={(val) => changeLocation(val)}
         />
+        <small>
+          {loading ? 'Loading...' : 'Selesai!'} <br />
+          {found ? 'Ditemukan' : 'Tidak ditemukan'}
+        </small>
         <Daily
           dateIndo={dateIndo}
           dayIndo={dayIndo}
