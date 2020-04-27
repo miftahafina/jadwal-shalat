@@ -87,12 +87,13 @@ function App() {
           changeLocation={(val) => changeLocation(val)}
           loading={loading}
         />
-        <small>{found ? 'Ditemukan' : 'Tidak ditemukan'}</small>
         <Daily
           dateIndo={dateIndo}
           dayIndo={dayIndo}
           changeDate={(val) => changeDate(val)}
           prayerTimes={prayerTimes}
+          loading={loading}
+          found={found}
         />
         <Footer />
       </Container>
