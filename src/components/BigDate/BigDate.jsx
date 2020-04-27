@@ -5,7 +5,7 @@ import ChevronRightIcon from '../../Icons/chevron-right.png';
 
 const BigDate = (props) => {
   return (
-    <div className="flex flex-row items-center justify-between my-16">
+    <div className="flex flex-row items-center justify-between my-12">
       <button className="outline-none" onClick={() => props.changeDate(-1)}>
         <img src={ChevronLeftIcon} alt="Chevron left icon" className="h-10" />
       </button>

@@ -9,11 +9,13 @@ import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 
 import Daily from './Page/Daily/Daily';
+import Weekly from './Page/Weekly/Weekly';
 
 function App() {
   const [location, setLocation] = useState('Pemalang');
   const [date, settingDate] = useState(new Date());
   const [prayerTimes, setPrayerTimes] = useState([]);
+  const [weeklyPrayerTimes, setWeeklyPrayerTimes] = useState([]);
 
   const [dateFormatted, setDateFormatted] = useState('');
   const [dayIndo, setDayIndo] = useState('');
@@ -87,14 +89,17 @@ function App() {
           changeLocation={(val) => changeLocation(val)}
           loading={loading}
         />
-        <Daily
+        {/* <Daily
           dateIndo={dateIndo}
           dayIndo={dayIndo}
           changeDate={(val) => changeDate(val)}
           prayerTimes={prayerTimes}
           loading={loading}
           found={found}
-        />
+        /> */}
+
+        <Weekly />
+
         <Footer />
       </Container>
       <Nav />

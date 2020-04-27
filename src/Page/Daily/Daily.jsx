@@ -7,7 +7,6 @@ const Daily = (props) => {
   return (
     <>
       <BigDate dateIndo={props.dateIndo} dayIndo={props.dayIndo} changeDate={(val) => props.changeDate(val)}/>
-      
       {
         !props.loading & !props.found ?
         <p>Data tidak ditemukan</p> :
