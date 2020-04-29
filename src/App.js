@@ -120,7 +120,11 @@ function App() {
           </Route>
 
           <Route exact path="/monthly">
-            <Monthly monthlyPrayerTimes={monthlyPrayerTimes}/>
+            <Monthly
+              monthlyPrayerTimes={monthlyPrayerTimes}
+              loading={loading}
+              found={found}
+            />
           </Route>
         </Switch>
 

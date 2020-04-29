@@ -37,6 +37,9 @@ const Monthly = (props) => {
         </thead>
         <tbody>
         {
+          !props.loading && !props.found ?
+          <td colSpan="6" className="p-1 text-xs">Data tidak ditemukan</td> :
+          
           props.monthlyPrayerTimes.map((data, index) => {
             return (
               <Fragment key={index}>
