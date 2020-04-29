@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import DiaryIcon from '../../Icons/diary.png';
@@ -25,10 +25,10 @@ const Nav = () => {
           Bulanan
         </button>
         
-        <button className="text-xs pt-2 pb-1 w-full bg-white text-center" onClick={() => handleClick('/')}>
+        {/* <button className="text-xs pt-2 pb-1 w-full bg-white text-center" onClick={() => handleClick('/')}>
           <img src={ForestIcon} alt="Forest Icon" className="w-6 mb-1 mx-auto" />
           Jelajah
-        </button>
+        </button> */}
       </div>
     </section>
   );

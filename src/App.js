@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import useGeolocation from 'react-hook-geolocation';
 
@@ -13,7 +13,7 @@ import Daily from './Page/Daily/Daily';
 import Monthly from './Page/Monthly/Monthly';
 
 function App() {
-  const [location, setLocation] = useState('Pemalang');
+  const [location, setLocation] = useState('');
   const [date, settingDate] = useState(new Date());
   const [prayerTimes, setPrayerTimes] = useState([]);
   const [monthlyPrayerTimes, setMonthlyPrayerTimes] = useState([]);
@@ -27,6 +27,7 @@ function App() {
 
   const geolocation = useGeolocation();
 
+  // Harian
   useEffect(() => {
     if (dateFormatted !== '') {
       setLoading(true);
@@ -50,8 +51,6 @@ function App() {
     }
   }, [dateFormatted, location]);
 
-  // 
-
   // Bulanan
   useEffect(() => {
     axios.get(`https://api.pray.zone/v2/times/this_month.json?school=5&city=${location}`)
@@ -64,9 +63,17 @@ function App() {
     setDateFormatted(`${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${date.getDate()}`);
   }, [date])
 
-  const getPrayerTimesByLocation = () => {
-    
-  }
+  useEffect(() => {
+    if (!localStorage.hasOwnProperty('location')) {
+      localStorage.setItem('location', 'Pemalang');
+    }
+
+    setLocation(localStorage.getItem('location'));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('location', location);
+  }, [location])
 
   const getDayIndo = (val) => {
     const dayIndo = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu'];
