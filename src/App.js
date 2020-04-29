@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import useGeolocation from 'react-hook-geolocation';
 
@@ -100,16 +101,25 @@ function App() {
           changeLocation={(val) => changeLocation(val)}
           loading={loading}
         />
-        {/* <Daily
-          dateIndo={dateIndo}
-          dayIndo={dayIndo}
-          changeDate={(val) => changeDate(val)}
-          prayerTimes={prayerTimes}
-          loading={loading}
-          found={found}
-        /> */}
 
-        <Monthly monthlyPrayerTimes={monthlyPrayerTimes}/>
+        <Router>
+          <Switch>
+            <Route exact path="/daily">
+              <Daily
+                dateIndo={dateIndo}
+                dayIndo={dayIndo}
+                changeDate={(val) => changeDate(val)}
+                prayerTimes={prayerTimes}
+                loading={loading}
+                found={found}
+              />
+            </Route>
+
+            <Route exact path="/monthly">
+              <Monthly monthlyPrayerTimes={monthlyPrayerTimes}/>
+            </Route>
+          </Switch>
+        </Router>
 
         <Footer />
       </Container>
