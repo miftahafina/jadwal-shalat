@@ -11,7 +11,7 @@ const BigDate = (props) => {
       </button>
 
       <div className="flex flex-col items-center justify-between">
-        <div className="text-6xl leading-none font-thin" onClick={() => props.changeDate(1)}>{props.dayIndo}</div>
+        <div className="text-6xl leading-none font-normal" onClick={() => props.changeDate(1)}>{props.dayIndo}</div>
         <div className="text-base">{props.dateIndo}</div>
       </div>
 
