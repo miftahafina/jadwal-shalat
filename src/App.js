@@ -34,7 +34,6 @@ function App() {
 
       axios.get(`https://api.pray.zone/v2/times/day.json?city=${location}&date=${dateFormatted}&school=5`)
       .then(res => {
-        // console.log(res.data.results);
         setPrayerTimes(res.data.results.datetime[0].times);
       })
       
@@ -57,7 +56,6 @@ function App() {
   useEffect(() => {
     axios.get(`https://api.pray.zone/v2/times/this_month.json?school=5&city=${location}`)
       .then(res => {
-        console.log('bulanan', res.data.results.datetime);
         setMonthlyPrayerTimes(res.data.results.datetime);
       });
   }, [location])
@@ -94,7 +92,7 @@ function App() {
   }
 
   return (
-    <>
+    <Router>
       <Container>
         <SearchBox
           location={location}
@@ -102,29 +100,27 @@ function App() {
           loading={loading}
         />
 
-        <Router>
-          <Switch>
-            <Route exact path="/daily">
-              <Daily
-                dateIndo={dateIndo}
-                dayIndo={dayIndo}
-                changeDate={(val) => changeDate(val)}
-                prayerTimes={prayerTimes}
-                loading={loading}
-                found={found}
-              />
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Daily
+              dateIndo={dateIndo}
+              dayIndo={dayIndo}
+              changeDate={(val) => changeDate(val)}
+              prayerTimes={prayerTimes}
+              loading={loading}
+              found={found}
+            />
+          </Route>
 
-            <Route exact path="/monthly">
-              <Monthly monthlyPrayerTimes={monthlyPrayerTimes}/>
-            </Route>
-          </Switch>
-        </Router>
+          <Route exact path="/monthly">
+            <Monthly monthlyPrayerTimes={monthlyPrayerTimes}/>
+          </Route>
+        </Switch>
 
         <Footer />
       </Container>
       <Nav />
-    </>
+    </Router>
   );
 }
 
